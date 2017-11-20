@@ -17,19 +17,18 @@ build:
 
 requirements:
   build:
+    - {{ compiler('c') }}
+  host:
     - python
-    - toolchain
     - setuptools
     - setuptools_scm
     - cython
-    - numpy 1.9.*  # [py27 or py35]
-    - numpy 1.11.*  # [py36]
+    - numpy
   run:
     - dask
     - dask-glm
     - dask-searchcv
-    - numpy >=1.11.*  # [py36]
-    - numpy >=1.9.*  # [py27 or py35]
+    - {{ pin_compatible('numpy') }}
     - pandas
     - python
     - scikit-learn
