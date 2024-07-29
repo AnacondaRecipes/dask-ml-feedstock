@@ -1,5 +1,5 @@
-{% set name = "dask-ml" %}
-{% set version = "2023.3.24" %}
+{% set name = "dask_ml" %}
+{% set version = "2024.4.4" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 96c090db6d32836536e3f09ca64deb599e864587aa8e3d4d2c6b4af588733307
+  sha256: 7956910a49e1e31944280fdb311adf245da11ef410d67deb7a05c67c7d0c4498
 
 build:
   number: 0
@@ -20,9 +20,8 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
-    - setuptools_scm
-    - wheel
+    - hatchling
+    - hatch-vcs
   run:
     # dask-ml requires dask with dask.array and dask.dataframe
     - dask >=2.4.0
