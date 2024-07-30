@@ -28,7 +28,7 @@ requirements:
     - distributed >=2.4.0
     - multipledispatch >=0.4.9
     - numba >=0.51.0
-    - numpy >=1.20.0
+    - numpy >=1.20.0,<2.0a0
     - packaging
     - pandas >=0.24.2
     - python
