@@ -1,5 +1,5 @@
 {% set name = "dask-ml" %}
-{% set version = "2024.4.4" %}
+{% set version = "2025.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace("-","_") }}-{{ version }}.tar.gz
-  sha256: 7956910a49e1e31944280fdb311adf245da11ef410d67deb7a05c67c7d0c4498
+  sha256: b31caeb5f603f9537ffa34bd247e0e1fcefda7c007631260f8abdee49f89b1e1
 
 build:
   number: 0
   # numba isn't available on s390x
-  skip: True  # [py<38 or s390x]
+  skip: True  # [py<310 or s390x]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
