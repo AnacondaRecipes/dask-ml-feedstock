@@ -1,0 +1,4 @@
+channels:
+  - https://staging.continuum.io/prefect/fs/distributed-feedstock/pr35/b5860aa
+  - https://staging.continuum.io/prefect/fs/dask-expr-feedstock/pr4/79b2896
+  - https://staging.continuum.io/prefect/fs/dask-feedstock/pr39/5834b06
