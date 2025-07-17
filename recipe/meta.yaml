@@ -1,28 +1,28 @@
 {% set name = "dask-ml" %}
 {% set version = "1.9.0" %}
-{% set sha256 = "2f376a7114133b484a6d393f62298473116fc49c79ec7d50d5b031d752f54307" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 2f376a7114133b484a6d393f62298473116fc49c79ec7d50d5b031d752f54307
 
 build:
-  noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: True  # [py<36]
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
+    - wheel
     - setuptools
     - setuptools_scm
   run:
+    - python
     - dask >=2.4.0
     - dask-glm >=0.2.0
     - distributed >=2.4.0
@@ -31,11 +31,11 @@ requirements:
     - numpy >=1.17.3
     - packaging
     - pandas >=0.24.2
-    - python >=3.6
-    - scikit-learn >=0.23.0
+    # fix compatibility with scikit-learn 1.7.0
+    # ImportError: cannot import name 'if_delegate_has_method' from 'sklearn.utils.metaestimators'
+    # if_delegate_has_method removed in 1.4.0
+    - scikit-learn >=0.23.0,<1.4.0
     - scipy
-    - setuptools
-    - six
 
 test:
   imports:
@@ -49,9 +49,13 @@ test:
     - dask_ml.preprocessing
     - dask_ml.utils
     - dask_ml.wrappers
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
-  home: http://github.com/dask/dask-ml
+  home: https://github.com/dask/dask-ml
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
