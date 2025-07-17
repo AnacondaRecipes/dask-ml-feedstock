@@ -10,9 +10,8 @@ source:
   sha256: b31caeb5f603f9537ffa34bd247e0e1fcefda7c007631260f8abdee49f89b1e1
 
 build:
-  number: 0
-  # numba isn't available on s390x
-  skip: True  # [py<310 or s390x]
+  number: 1
+  skip: True  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
@@ -47,10 +46,11 @@ test:
     - dask_ml.preprocessing
     - dask_ml.utils
     - dask_ml.wrappers
-  requires:
-    - pip
   commands:
     - pip check
+  requires:
+    - pip
+    - pyarrow
 
 about:
   home: https://github.com/dask/dask-ml
