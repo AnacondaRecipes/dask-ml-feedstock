@@ -6,14 +6,13 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace("-","_") }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace("-","_") }}-{{ version }}.tar.gz
   sha256: b31caeb5f603f9537ffa34bd247e0e1fcefda7c007631260f8abdee49f89b1e1
 
 build:
-  number: 0
-  # numba isn't available on s390x
-  skip: True  # [py<310 or s390x]
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  skip: true  # [py<310]
 
 requirements:
   host:
@@ -22,16 +21,21 @@ requirements:
     - hatchling
     - hatch-vcs
   run:
-    # dask-ml requires dask with dask.array and dask.dataframe
-    - dask >=2025.1.0
+    - python
     - dask-glm >=0.2.0
-    - distributed >=2025.1.0
+    # 1) dask-ml requires dask with dask.array and dask.dataframe
+    # 2) upperbound 2025.10.0 added, import dask_ml stop working becasue:
+    # dask package version string is invalid for packaging.version.parse() - likely contains development version markers like + or non-standard suffixes that packaging.version.Version doesn't accept.
+    # Failed with:
+    # DASK_VERSION = packaging.version.parse(dask.__version__)
+    # raise InvalidVersion(f"Invalid version: {version!r}")
+    - dask >=2025.1.0,<=2025.10.0
+    - distributed >=2025.1.0,<=2025.10.0
     - multipledispatch >=0.4.9
     - numba >=0.51.0
     - numpy >=1.24.0
     - packaging
     - pandas >=2.0
-    - python
     - scikit-learn >=1.6.1
     - scipy
 
