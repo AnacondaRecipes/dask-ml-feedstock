@@ -1,2 +1,5 @@
 channels:
    - https://staging.continuum.io/pbp/fs/scikit-learn-feedstock/pr43/118d43e
+   - https://staging.continuum.io/pbp/fs/dask-core-feedstock/pr49/70abdb6
+   - https://staging.continuum.io/pbp/fs/distributed-feedstock/pr44/44a58af
+   - https://staging.continuum.io/pbp/fs/dask-feedstock/pr48/d9b5217

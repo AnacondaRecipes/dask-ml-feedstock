@@ -23,14 +23,9 @@ requirements:
   run:
     - python
     - dask-glm >=0.2.0
-    # 1) dask-ml requires dask with dask.array and dask.dataframe
-    # 2) upper bound 2025.10.0 added, import dask ml stopped working because:
-    # dask package version string is invalid for packaging.version.parse() - likely contains development version markers like + or non-standard suffixes that packaging.version.Version doesn't accept.
-    # Failed with:
-    # DASK_VERSION = packaging.version.parse(dask.__version__)
-    # raise InvalidVersion(f"Invalid version: {version!r}")
-    - dask >=2025.1.0,<=2025.10.0
-    - distributed >=2025.1.0,<=2025.10.0
+    # dask-ml requires dask with dask.array and dask.dataframe
+    - dask >=2025.1.0
+    - distributed >=2025.1.0
     - multipledispatch >=0.4.9
     - numba >=0.51.0
     - numpy >=1.24.0
