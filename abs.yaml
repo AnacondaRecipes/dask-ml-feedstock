@@ -1,8 +1,2 @@
 build_env_vars:
    ANACONDA_ROCKET_ENABLE_PY314 : yes
-
-channels:
-   - https://staging.continuum.io/pbp/fs/scikit-learn-feedstock/pr43/118d43e
-   - https://staging.continuum.io/pbp/fs/dask-core-feedstock/pr49/d53bbd0
-   - https://staging.continuum.io/pbp/fs/distributed-feedstock/pr44/40191ca
-   - https://staging.continuum.io/pbp/fs/dask-feedstock/pr48/5a23d4c
